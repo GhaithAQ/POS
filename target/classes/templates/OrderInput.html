@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Link th:href="@{/OrdersTables}">
+</head>
+<body>
+    <form method="post" th:object="${order}" th:action="@{/dataSubmitOrder}" >
+        <label for="Number of Shawerma Normal">Number of Shawerma Normal </label><br>
+        <input type="text" placeholder="Shawerma Normal" th:field="*{No_of_ShawermaNormalfororder}"><br><br>
+        <label for="Number of Shawerma Super">Number of Shawerma Super </label><br>
+        <input type="text" placeholder="Shawerma Super" th:field="*{No_of_ShawermaSuperfororder}" ><br><br>
+        <label for="Number of Shawerma Double">Number of Shawerma Double </label><br>
+        <input type="text" placeholder="Shawerma Double" th:field="*{No_of_ShawermaDoublefororder}"><br><br>
+        <label for="Number of colas">Number of colas</label><br>
+        <input type="text" placeholder="Cola" th:field="*{No_of_cola}"><br><br>
+        <label for="Number of water bottles">Number of water bottles </label><br>
+        <input type="text" placeholder="water" th:field="*{No_of_waterbottle}"><br><br>
+        <label for="Number of shanina">Number of shanina</label><br>
+        <input type="text" placeholder="shanina" th:field="*{No_of_Shanina}"><br><br>
+        <input type="submit" value="submit"><br><br>
+    </form>
+    <a method="get" th:href="@{/OrdersTables}"><button>Orders </button></a>
+
+</body>
+</html>

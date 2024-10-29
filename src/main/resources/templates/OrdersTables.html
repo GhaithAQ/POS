@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Link th:href="@{tableStyles.css}" rel="stylesheet" >
+    <Link th:href="@{/OrderInput}">
+    <Link th:href="@{/RemoveOrders}">
+    <LinK th:href="@{/SortAccordingToTotalprice}">
+    <Link th:href="@{/SortAccordingToOrderNumber}">
+    <Link th:href="@{/OrdersTables2}">
+    <Linkb th:href="@{/OrdersTables3}">
+
+</head>
+<body>
+    <div th:each="order:${orders}" th:object="${order}" >
+    <table th:if="*{ThereIsOrder}" width = "35%" >
+        <thead>
+        <tr>
+            <th >Order Number </th>
+            <th>Order Time</th>
+            <th th:if="*{IsContainSN}">Shawerma Normal </th>
+            <th th:if="*{IsContainSN}">Shawerma Normal price </th>
+            <th th:if="*{IsContainSP}">Shawerma Super</th>
+            <th th:if="*{IsContainSP}">Shawerma Super price </th>
+            <th th:if="*{IsContainSD}">Shawerma Double </th>
+            <th th:if="*{IsContainSD}">Shawerma Double price </th>
+            <th th:if="*{IsContainCola}">Cola </th>
+            <th th:if="*{IsContainCola}">Cola price </th>
+            <th th:if="*{IsContainWater}">Water </th>
+            <th th:if="*{IsContainWater}">Water price </th>
+            <th th:if="*{IsContainShanina}">Shanina </th>
+            <th th:if="*{IsContainShanina}">Shanina price </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td th:text="*{Order_number}"></td>
+            <td th:text="*{getTm}"></td>
+            <td th:if="*{IsContainSN}" th:text="*{No_of_ShawermaNormalfororder}"></td>
+            <td th:if="*{IsContainSN}" th:text="*{Total_ShawermaNormal_price} + ' $'"></td>
+            <td th:if="*{IsContainSP}" th:text="*{No_of_ShawermaSuperfororder}"></td>
+            <td th:if="*{IsContainSP}" th:text="*{Total_ShawermaSuper_price} + ' $'"></td>
+            <td th:if="*{IsContainSD}" th:text="*{No_of_ShawermaDoublefororder}"></td>
+            <td th:if="*{IsContainSD}" th:text="*{Total_ShawermaDouble_price} + ' $'"></td>
+            <td th:if="*{IsContainCola}" th:text="*{No_of_cola}"></td>
+            <td th:if="*{IsContainCola}" th:text="*{Total_cola_price} + ' $'"></td>
+            <td th:if="*{IsContainWater}" th:text="*{No_of_waterbottle}"></td>
+            <td th:if="*{IsContainWater}" th:text="*{Total_water_price}+ ' $'"></td>
+            <td th:if="*{IsContainShanina}" th:text="*{No_of_Shanina}"></td>
+            <td th:if="*{IsContainShanina}" th:text="*{Total_Shanina_price} + ' $'"></td>
+
+        </tr>
+    </tbody>
+    </table>
+
+    <br><h5 th:if="*{ThereIsOrder}">  Number of items: </h5><h5 th:if="*{ThereIsOrder}" th:text="  *{No_of_items}"></h5><br><h5 th:if="*{ThereIsOrder}">Total price: </h5><h5 th:if="*{ThereIsOrder}" th:text="*{Total_price} + ' $'"></h5><br><br>
+    <hr th:if="*{ThereIsOrder}">
+</div>
+<br><h5 th:text="'Total Net profit Today: '+ ${TotalNetProfitToday} +' $'"></h5><hr>
+<h5 th:text="'Total_Cash: '+ ${Total_Cash} +' $'"></h5><hr>
+<a method="get" th:href="@{/}"><button>Home</button></a>
+<a  th:href="@{/RemoveOrders}" ><button > Delete All old orders </button></a>
+
+<a th:href="@{/SortAccordingToTotalprice}"><button> Sort according to Total price </button></a>
+<a th:href="@{/SortAccordingToOrderNumber}"><button>Return from Sorting</button></a>
+<br><br>
+<form th:method="post" th:object="${r}"  th:action="@{/SubmitSearchTP}">
+    <input type="search" placeholder="Search TP" th:field="*{searchTP}">
+    <input type="submit" value="Search The Total Price">
+</form>
+<br><br>
+<form th:method="post" th:object="${r1}" th:action="@{/SubmitSearchON}">
+    <input type="text" placeholder="Search ON" th:field="*{searchON}">
+    <input type="submit" value="Search The Order Number">
+</form>
+</body>
+</html>

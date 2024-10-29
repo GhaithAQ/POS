@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Link th:href="@{tableStyles.css}" rel="stylesheet" >
+        <Link th:href="@{/OrdersTables}">
+            <Link th:href="@{/OrderInput}">
+</body>
+</html>
+<body>
+    <h1 th:if="${orders2.size()==0}" >There is not Ordernumber in this value</h1>
+    <div th:each="O:${orders2}" th:object="${O}" >
+    <table th:if="*{ThereIsOrder}" width = "35%" >
+        <tr>
+            <th >Order Number </th>
+            <th th:if="*{IsContainSN}">Shawerma Normal </th>
+            <th th:if="*{IsContainSN}">Shawerma Normal price </th>
+            <th th:if="*{IsContainSP}">Shawerma Super</th>
+            <th th:if="*{IsContainSP}">Shawerma Super price </th>
+            <th th:if="*{IsContainSD}">Shawerma Double </th>
+            <th th:if="*{IsContainSD}">Shawerma Double price </th>
+            <th th:if="*{IsContainCola}">Cola </th>
+            <th th:if="*{IsContainCola}">Cola price </th>
+            <th th:if="*{IsContainWater}">Water </th>
+            <th th:if="*{IsContainWater}">Water price </th>
+            <th th:if="*{IsContainShanina}">Shanina </th>
+            <th th:if="*{IsContainShanina}">Shanina price </th>
+        </tr>
+        <tr>
+            <td th:text="*{Order_number}"></td>
+            <td th:if="*{IsContainSN}" th:text="*{No_of_ShawermaNormalfororder}"></td>
+            <td th:if="*{IsContainSN}" th:text="*{Total_ShawermaNormal_price} + ' $'"></td>
+            <td th:if="*{IsContainSP}" th:text="*{No_of_ShawermaSuperfororder}"></td>
+            <td th:if="*{IsContainSP}" th:text="*{Total_ShawermaSuper_price} + ' $'"></td>
+            <td th:if="*{IsContainSD}" th:text="*{No_of_ShawermaDoublefororder}"></td>
+            <td th:if="*{IsContainSD}" th:text="*{Total_ShawermaDouble_price} + ' $'"></td>
+            <td th:if="*{IsContainCola}" th:text="*{No_of_cola}"></td>
+            <td th:if="*{IsContainCola}" th:text="*{Total_cola_price} + ' $'"></td>
+            <td th:if="*{IsContainWater}" th:text="*{No_of_waterbottle}"></td>
+            <td th:if="*{IsContainWater}" th:text="*{Total_water_price}+ ' $'"></td>
+            <td th:if="*{IsContainShanina}" th:text="*{No_of_Shanina}"></td>
+            <td th:if="*{IsContainShanina}" th:text="*{Total_Shanina_price} + ' $'"></td>
+
+        </tr>
+    </table>
+
+    <br><h5 th:if="*{ThereIsOrder}">  Number of items: </h5><h5 th:if="*{ThereIsOrder}" th:text="  *{No_of_items}"></h5><br><h5 th:if="*{ThereIsOrder}">Total price: </h5><h5 th:if="*{ThereIsOrder}" th:text="*{Total_price} + ' $'"></h5><br><br>
+    <hr th:if="*{ThereIsOrder}">
+</div>
+<a method="get" th:href="@{/OrdersTables}"><button> Return to Orders Tables </button></a>
+<a method="get" th:href="@{/}"><button> Return To Home </button></a>
+</body>
+</html>
